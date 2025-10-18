@@ -24,7 +24,6 @@ const DEFAULT_SETTINGS: MacOSSettings = {
   theme: 'light',
   dockAutoHide: false,
   dockMagnification: 75,
-  zoom: 100,
   reducedMotion: false,
 };
 
@@ -116,7 +115,7 @@ export const MacOSProvider = ({ children, apps }: { children: ReactNode; apps: A
             preMaximizePosition: w.position,
             preMaximizeSize: w.size,
             position: { x: 0, y: 28 },
-            size: { width: window.innerWidth, height: window.innerHeight - 28 - 80 },
+            size: { width: window.innerWidth, height: window.innerHeight - 38 },
           };
         }
       })

@@ -41,7 +41,7 @@ export const Window = ({ window }: WindowProps) => {
         const deltaX = e.clientX - dragStart.x;
         const deltaY = e.clientY - dragStart.y;
         const newX = Math.max(0, Math.min(globalThis.window.innerWidth - window.size.width, window.position.x + deltaX));
-        const newY = Math.max(28, Math.min(globalThis.window.innerHeight - 80 - window.size.height, window.position.y + deltaY));
+        const newY = Math.max(28, Math.min(globalThis.window.innerHeight - window.size.height - 10, window.position.y + deltaY));
         updateWindowPosition(window.id, { x: newX, y: newY });
         setDragStart({ x: e.clientX, y: e.clientY });
       } else if (isResizing) {
@@ -66,7 +66,7 @@ export const Window = ({ window }: WindowProps) => {
         }
         if (resizeDirection.includes('s')) {
           newHeight = Math.max(app.minSize?.height || 300, resizeStart.height + deltaY);
-          newHeight = Math.min(newHeight, globalThis.window.innerHeight - 80 - resizeStart.posY);
+          newHeight = Math.min(newHeight, globalThis.window.innerHeight - resizeStart.posY - 10);
         }
         if (resizeDirection.includes('n')) {
           newHeight = Math.max(app.minSize?.height || 300, resizeStart.height - deltaY);
@@ -106,7 +106,7 @@ export const Window = ({ window }: WindowProps) => {
         left: window.isMaximized ? 0 : window.position.x,
         top: window.isMaximized ? 28 : window.position.y,
         width: window.isMaximized ? '100vw' : window.size.width,
-        height: window.isMaximized ? 'calc(100vh - 28px - 80px)' : window.size.height,
+        height: window.isMaximized ? 'calc(100vh - 38px)' : window.size.height,
         zIndex: window.zIndex,
         background: 'hsl(var(--macos-glass))',
         border: '1px solid hsl(var(--macos-glass-border))',

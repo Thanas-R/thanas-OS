@@ -25,7 +25,6 @@ export interface MacOSSettings {
   theme: 'light' | 'dark';
   dockAutoHide: boolean;
   dockMagnification: number;
-  zoom: number;
   reducedMotion: boolean;
 }
 

@@ -2,7 +2,6 @@ import { useMacOS } from '@/contexts/MacOSContext';
 import { Monitor, Palette, Layout, Download, Upload, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { Slider } from '@/components/ui/slider';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import wallpaper1 from '@/assets/wallpaper-1.jpg';
@@ -58,7 +57,6 @@ export const SettingsApp = () => {
       theme: 'light',
       dockAutoHide: false,
       dockMagnification: 75,
-      zoom: 100,
       reducedMotion: false,
     });
   };
@@ -167,19 +165,6 @@ export const SettingsApp = () => {
           
           <Separator />
           
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <div className="font-medium">Zoom</div>
-              <span className="text-sm text-muted-foreground">{settings.zoom}%</span>
-            </div>
-            <Slider
-              value={[settings.zoom]}
-              onValueChange={([value]) => updateSettings({ zoom: value })}
-              min={50}
-              max={150}
-              step={5}
-            />
-          </div>
         </div>
       </Card>
 
