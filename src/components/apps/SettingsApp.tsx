@@ -8,11 +8,13 @@ import { Separator } from '@/components/ui/separator';
 import wallpaper1 from '@/assets/wallpaper-1.jpg';
 import wallpaper2 from '@/assets/wallpaper-2.jpg';
 import wallpaper3 from '@/assets/wallpaper-3.jpg';
+import wallpaper4 from '@/assets/wallpaper-4.jpg';
 
 const wallpapers = [
-  { id: 'wallpaper-1', src: wallpaper1, name: 'Ocean Waves' },
-  { id: 'wallpaper-2', src: wallpaper2, name: 'Purple Nebula' },
-  { id: 'wallpaper-3', src: wallpaper3, name: 'Mountain Sunset' },
+  { id: 'wallpaper-1', src: wallpaper1, name: 'Mountain Lake' },
+  { id: 'wallpaper-2', src: wallpaper2, name: 'Misty Valley' },
+  { id: 'wallpaper-3', src: wallpaper3, name: 'Winter Forest' },
+  { id: 'wallpaper-4', src: wallpaper4, name: 'Canyon Vista' },
 ];
 
 export const SettingsApp = () => {
@@ -75,7 +77,7 @@ export const SettingsApp = () => {
           <Monitor className="w-5 h-5 text-primary" />
           <h2 className="text-xl font-semibold">Wallpaper</h2>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {wallpapers.map(wallpaper => (
             <button
               key={wallpaper.id}
@@ -83,7 +85,7 @@ export const SettingsApp = () => {
               className={`relative rounded-xl overflow-hidden aspect-video transition-all ${
                 settings.wallpaper === wallpaper.id
                   ? 'ring-4 ring-primary scale-105'
-                  : 'hover:scale-105'
+                  : 'hover:scale-105 opacity-80'
               }`}
             >
               <img

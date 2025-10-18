@@ -26,12 +26,13 @@ export const Dock = () => {
 
   return (
     <div
-      className={`fixed bottom-2 left-1/2 -translate-x-1/2 backdrop-blur-macos rounded-2xl px-3 py-2 shadow-2xl transition-all duration-300 ${
+      className={`fixed bottom-2 left-1/2 -translate-x-1/2 backdrop-blur-macos-heavy rounded-3xl px-4 py-3 shadow-macos-glass transition-all duration-300 ${
         settings.dockAutoHide && hoveredIndex === null ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
       }`}
       style={{
         background: 'hsl(var(--macos-dock-bg))',
         border: '1px solid hsl(var(--macos-glass-border))',
+        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.4), 0 0 1px rgba(255, 255, 255, 0.1) inset',
       }}
       onMouseLeave={() => setHoveredIndex(null)}
     >
@@ -56,11 +57,13 @@ export const Dock = () => {
               onClick={() => openApp(app.id)}
             >
               <div
-                className="rounded-2xl shadow-lg flex items-center justify-center text-3xl"
+                className="rounded-2xl shadow-lg flex items-center justify-center text-3xl backdrop-blur-sm"
                 style={{
                   width: baseSize,
                   height: baseSize,
-                  background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+                  background: 'linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--accent) / 0.9))',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.2) inset',
                 }}
               >
                 {app.icon}
@@ -83,7 +86,7 @@ export const Dock = () => {
 
               {/* Tooltip */}
               {hoveredIndex === index && (
-                <div className="absolute -top-10 backdrop-blur-macos bg-[hsl(var(--macos-glass))] px-3 py-1 rounded-lg text-sm font-medium whitespace-nowrap border border-[hsl(var(--macos-glass-border))] animate-fade-in">
+                <div className="absolute -top-12 backdrop-blur-macos-heavy bg-[hsl(var(--macos-glass))] px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap border border-[hsl(var(--macos-glass-border))] animate-fade-in shadow-macos-glass">
                   {app.name}
                 </div>
               )}

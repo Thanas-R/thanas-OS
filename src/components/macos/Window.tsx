@@ -71,25 +71,31 @@ export const Window = ({ window }: WindowProps) => {
   return (
     <div
       ref={windowRef}
-      className="absolute backdrop-blur-macos rounded-xl shadow-2xl overflow-hidden animate-fade-in"
+      className="absolute backdrop-blur-macos-heavy rounded-2xl shadow-macos-window overflow-hidden animate-fade-in"
       style={{
-        left: window.position.x,
-        top: window.position.y,
-        width: window.size.width,
-        height: window.size.height,
+        left: window.isMaximized ? 0 : window.position.x,
+        top: window.isMaximized ? 28 : window.position.y,
+        width: window.isMaximized ? '100vw' : window.size.width,
+        height: window.isMaximized ? 'calc(100vh - 28px - 80px)' : window.size.height,
         zIndex: window.zIndex,
         background: 'hsl(var(--macos-glass))',
         border: '1px solid hsl(var(--macos-glass-border))',
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 1px rgba(255, 255, 255, 0.15) inset',
       }}
       onMouseDown={() => focusWindow(window.id)}
     >
       {/* Title Bar */}
       <div
-        className="flex items-center justify-between px-4 h-10 cursor-move select-none"
-        style={{ background: 'hsl(var(--macos-window-bg))' }}
+        className="flex items-center justify-between px-4 h-10 cursor-move select-none backdrop-blur-md"
+        style={{ 
+          background: 'hsl(var(--macos-window-bg))',
+          borderBottom: '1px solid hsl(var(--macos-glass-border))'
+        }}
         onMouseDown={(e) => {
-          setIsDragging(true);
-          setDragStart({ x: e.clientX, y: e.clientY });
+          if (!window.isMaximized) {
+            setIsDragging(true);
+            setDragStart({ x: e.clientX, y: e.clientY });
+          }
         }}
       >
         {/* Traffic Lights */}
@@ -99,33 +105,33 @@ export const Window = ({ window }: WindowProps) => {
               e.stopPropagation();
               closeWindow(window.id);
             }}
-            className="w-3 h-3 rounded-full transition-transform hover:scale-110"
-            style={{ background: isFocused ? 'hsl(var(--macos-traffic-red))' : 'hsl(var(--muted))' }}
+            className="w-3 h-3 rounded-full transition-all hover:scale-110 flex items-center justify-center group"
+            style={{ background: isFocused ? '#FF5F57' : '#555' }}
             aria-label="Close"
           >
-            {isFocused && <X className="w-2 h-2 text-[hsl(var(--macos-traffic-red))]" strokeWidth={3} />}
+            {isFocused && <X className="w-2 h-2 text-[#9f0000] opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />}
           </button>
           <button
             onClick={(e) => {
               e.stopPropagation();
               minimizeWindow(window.id);
             }}
-            className="w-3 h-3 rounded-full transition-transform hover:scale-110"
-            style={{ background: isFocused ? 'hsl(var(--macos-traffic-yellow))' : 'hsl(var(--muted))' }}
+            className="w-3 h-3 rounded-full transition-all hover:scale-110 flex items-center justify-center group"
+            style={{ background: isFocused ? '#FFBD2E' : '#555' }}
             aria-label="Minimize"
           >
-            {isFocused && <Minus className="w-2 h-2 text-[hsl(var(--macos-traffic-yellow))]" strokeWidth={3} />}
+            {isFocused && <Minus className="w-2 h-2 text-[#995700] opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />}
           </button>
           <button
             onClick={(e) => {
               e.stopPropagation();
               maximizeWindow(window.id);
             }}
-            className="w-3 h-3 rounded-full transition-transform hover:scale-110"
-            style={{ background: isFocused ? 'hsl(var(--macos-traffic-green))' : 'hsl(var(--muted))' }}
+            className="w-3 h-3 rounded-full transition-all hover:scale-110 flex items-center justify-center group"
+            style={{ background: isFocused ? '#28C840' : '#555' }}
             aria-label="Maximize"
           >
-            {isFocused && <Square className="w-2 h-2 text-[hsl(var(--macos-traffic-green))]" strokeWidth={3} />}
+            {isFocused && <Square className="w-2 h-2 text-[#006400] opacity-0 group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />}
           </button>
         </div>
 
@@ -136,7 +142,7 @@ export const Window = ({ window }: WindowProps) => {
       </div>
 
       {/* Content */}
-      <div className="h-[calc(100%-2.5rem)] overflow-auto bg-[hsl(var(--macos-window-bg))]">
+      <div className="h-[calc(100%-2.5rem)] overflow-auto backdrop-blur-sm" style={{ background: 'hsl(var(--macos-window-bg))' }}>
         <AppComponent />
       </div>
 

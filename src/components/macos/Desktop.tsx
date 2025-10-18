@@ -2,15 +2,19 @@ import { useMacOS } from '@/contexts/MacOSContext';
 import { Window } from './Window';
 import { Dock } from './Dock';
 import { MenuBar } from './MenuBar';
+import { StatsWidget } from '@/components/widgets/StatsWidget';
+import { ClockWidget } from '@/components/widgets/ClockWidget';
 import wallpaper1 from '@/assets/wallpaper-1.jpg';
 import wallpaper2 from '@/assets/wallpaper-2.jpg';
 import wallpaper3 from '@/assets/wallpaper-3.jpg';
+import wallpaper4 from '@/assets/wallpaper-4.jpg';
 import { useEffect } from 'react';
 
 const wallpapers = {
   'wallpaper-1': wallpaper1,
   'wallpaper-2': wallpaper2,
   'wallpaper-3': wallpaper3,
+  'wallpaper-4': wallpaper4,
 };
 
 export const Desktop = () => {
@@ -42,7 +46,14 @@ export const Desktop = () => {
     >
       <MenuBar />
       
-      <div className="pt-7 h-full">
+      <div className="pt-7 h-full p-8">
+        {/* Desktop Widgets */}
+        <div className="absolute top-20 right-8 space-y-4">
+          <ClockWidget />
+          <StatsWidget />
+        </div>
+
+        {/* Windows */}
         {windows.map(window => (
           <Window key={window.id} window={window} />
         ))}

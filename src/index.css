@@ -39,13 +39,13 @@ All colors MUST be HSL.
     
     --radius: 0.75rem;
     
-    /* macOS specific tokens */
-    --macos-glass: 0 0% 100% / 0.7;
-    --macos-glass-border: 0 0% 100% / 0.3;
+    /* macOS Frost & Liquid Glass Design */
+    --macos-glass: 240 20% 98% / 0.4;
+    --macos-glass-border: 240 30% 100% / 0.2;
+    --macos-window-bg: 240 10% 99% / 0.6;
+    --macos-dock-bg: 240 10% 95% / 0.3;
+    --macos-menubar-bg: 240 10% 98% / 0.5;
     --macos-shadow: 0 0% 0% / 0.15;
-    --macos-window-bg: 0 0% 98%;
-    --macos-menubar-bg: 0 0% 100% / 0.8;
-    --macos-dock-bg: 0 0% 100% / 0.3;
     --macos-traffic-red: 0 100% 65%;
     --macos-traffic-yellow: 40 100% 58%;
     --macos-traffic-green: 130 70% 50%;
@@ -81,13 +81,13 @@ All colors MUST be HSL.
     --input: 0 0% 24%;
     --ring: 211 100% 60%;
     
-    /* macOS Dark specific */
-    --macos-glass: 0 0% 18% / 0.75;
-    --macos-glass-border: 0 0% 100% / 0.1;
+    /* macOS Frost & Liquid Glass Design - Dark */
+    --macos-glass: 224 30% 10% / 0.4;
+    --macos-glass-border: 224 40% 25% / 0.2;
+    --macos-window-bg: 224 20% 12% / 0.6;
+    --macos-dock-bg: 224 30% 8% / 0.3;
+    --macos-menubar-bg: 224 20% 10% / 0.5;
     --macos-shadow: 0 0% 0% / 0.5;
-    --macos-window-bg: 0 0% 20%;
-    --macos-menubar-bg: 0 0% 18% / 0.9;
-    --macos-dock-bg: 0 0% 18% / 0.4;
     --macos-traffic-red: 0 100% 65%;
     --macos-traffic-yellow: 40 100% 58%;
     --macos-traffic-green: 130 70% 50%;
@@ -123,10 +123,15 @@ All colors MUST be HSL.
     background: hsl(var(--muted-foreground) / 0.5);
   }
   
-  /* Backdrop blur support */
+  /* Backdrop blur support - Enhanced Frost Glass */
   .backdrop-blur-macos {
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    backdrop-filter: blur(80px) saturate(180%);
+    -webkit-backdrop-filter: blur(80px) saturate(180%);
+  }
+  
+  .backdrop-blur-macos-heavy {
+    backdrop-filter: blur(120px) saturate(200%);
+    -webkit-backdrop-filter: blur(120px) saturate(200%);
   }
   
   /* Smooth animations */
