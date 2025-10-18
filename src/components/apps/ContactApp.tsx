@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Send, Mail, Github, Linkedin, Twitter, CheckCircle } from 'lucide-react';
+import { Send, Mail, Github, Linkedin, Twitter, CheckCircle, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -24,6 +24,14 @@ export const ContactApp = () => {
 
     setFormData({ name: '', email: '', message: '' });
     setIsSubmitting(false);
+  };
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('thanas5.rd@gmail.com');
+    toast({
+      title: 'Email Copied! ✓',
+      description: 'thanas5.rd@gmail.com copied to clipboard',
+    });
   };
 
   return (
@@ -105,13 +113,17 @@ export const ContactApp = () => {
               <Linkedin className="w-5 h-5" />
               <span className="text-sm font-medium">LinkedIn</span>
             </a>
-            <a
-              href="mailto:thanas@example.com"
-              className="flex items-center gap-3 p-3 bg-background rounded-lg hover:bg-accent transition-colors"
+            <button
+              onClick={copyEmail}
+              className="flex items-center gap-3 p-3 bg-background rounded-lg hover:bg-accent transition-colors cursor-pointer"
             >
               <Mail className="w-5 h-5" />
-              <span className="text-sm font-medium">Email</span>
-            </a>
+              <div className="flex flex-col items-start flex-1">
+                <span className="text-sm font-medium">Email</span>
+                <span className="text-xs text-muted-foreground">thanas5.rd@gmail.com</span>
+              </div>
+              <Copy className="w-4 h-4 opacity-50" />
+            </button>
             <a
               href="https://twitter.com"
               target="_blank"
