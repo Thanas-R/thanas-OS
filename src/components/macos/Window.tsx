@@ -142,7 +142,11 @@ export const Window = ({ window }: WindowProps) => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              minimizeWindow(window.id);
+              if (window.isMaximized) {
+                maximizeWindow(window.id); // Un-maximize if maximized
+              } else {
+                minimizeWindow(window.id); // Minimize if not maximized
+              }
             }}
             className={`w-3 h-3 rounded-full flex items-center justify-center group ${settings.reducedMotion ? '' : 'transition-all hover:scale-110'}`}
             style={{ background: isFocused ? '#FFBD2E' : '#555' }}
