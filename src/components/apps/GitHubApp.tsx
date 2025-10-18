@@ -55,7 +55,7 @@ export const GitHubApp = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 animate-fade-in">
       <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-3 mb-3">
           <Github className="w-8 h-8" />
@@ -67,27 +67,29 @@ export const GitHubApp = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        <Card className="p-6 text-center">
-          <div className="text-3xl font-bold text-primary mb-1">{stats.repos}</div>
-          <div className="text-sm text-muted-foreground">Repositories</div>
-        </Card>
-        <Card className="p-6 text-center">
-          <div className="text-3xl font-bold text-primary mb-1">{stats.stars}</div>
-          <div className="text-sm text-muted-foreground">Total Stars</div>
-        </Card>
-        <Card className="p-6 text-center">
-          <div className="text-3xl font-bold text-primary mb-1">{stats.followers}</div>
-          <div className="text-sm text-muted-foreground">Followers</div>
-        </Card>
-      </div>
+      {!loading && (
+        <div className="grid grid-cols-3 gap-4 mb-8 animate-fade-in">
+          <Card className="p-6 text-center">
+            <div className="text-3xl font-bold text-primary mb-1">{stats.repos}</div>
+            <div className="text-sm text-muted-foreground">Repositories</div>
+          </Card>
+          <Card className="p-6 text-center">
+            <div className="text-3xl font-bold text-primary mb-1">{stats.stars}</div>
+            <div className="text-sm text-muted-foreground">Total Stars</div>
+          </Card>
+          <Card className="p-6 text-center">
+            <div className="text-3xl font-bold text-primary mb-1">{stats.followers}</div>
+            <div className="text-sm text-muted-foreground">Followers</div>
+          </Card>
+        </div>
+      )}
 
       {/* Repositories */}
       <div>
         <h2 className="text-xl font-semibold mb-4">Recent Repositories</h2>
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-pulse-glow text-muted-foreground">Loading repositories...</div>
+            <div className="animate-pulse text-muted-foreground">Loading repositories...</div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
