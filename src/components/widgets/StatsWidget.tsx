@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FolderGit2, GitBranch, Star } from 'lucide-react';
 
 export const StatsWidget = () => {
-  const [stats] = useState({ repos: 3, stars: 14, projects: 3 });
+  const [stats] = useState({ repos: 3, stars: 14, projects: 4 });
 
 
   return (

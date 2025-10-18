@@ -6,6 +6,7 @@ import { MenuBar } from './MenuBar';
 import { Spotlight } from './Spotlight';
 import { StatsWidget } from '@/components/widgets/StatsWidget';
 import { ClockWidget } from '@/components/widgets/ClockWidget';
+import { WelcomeWidget } from '@/components/widgets/WelcomeWidget';
 import wallpaper1 from '@/assets/wallpaper-1.jpg';
 import wallpaper2 from '@/assets/wallpaper-2.jpg';
 import wallpaper3 from '@/assets/wallpaper-3.jpg';
@@ -54,6 +55,9 @@ export const Desktop = () => {
       <MenuBar onSpotlightClick={() => setSpotlightOpen(true)} />
       
       <div className="pt-7 h-full p-8">
+        {/* Welcome Widget - only show when no windows are open */}
+        {windows.filter(w => !w.isMinimized).length === 0 && <WelcomeWidget />}
+
         {/* Desktop Widgets */}
         <div className="absolute top-20 right-8 space-y-4">
           <ClockWidget />

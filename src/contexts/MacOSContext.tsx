@@ -109,13 +109,18 @@ export const MacOSProvider = ({ children, apps }: { children: ReactNode; apps: A
           };
         } else {
           // Maximize: store current position/size and go fullscreen
+          // If dock is auto-hide, use full height; otherwise leave space for dock
+          const maxHeight = settings.dockAutoHide 
+            ? window.innerHeight - 28 
+            : window.innerHeight - 28 - 100;
+          
           return {
             ...w,
             isMaximized: true,
             preMaximizePosition: w.position,
             preMaximizeSize: w.size,
             position: { x: 0, y: 28 },
-            size: { width: window.innerWidth, height: window.innerHeight - 38 },
+            size: { width: window.innerWidth, height: maxHeight },
           };
         }
       })
